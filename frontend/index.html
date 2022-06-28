@@ -28,19 +28,23 @@
       </form>
       <form action="">
         New Transaction: Deposit
-        <input type="radio" name="transaction" id="depositInput" />
+        <input type="radio" name="transaction" id="depositInput" value="deposit"/>
         Withdraw
-        <input type="radio" name="transaction" id="withdrawInput"/>
+        <input type="radio" name="transaction" id="withdrawInput" value="withdraw"/>
         Transfer
-        <input type="radio" name="transaction" id="transferInput"/>
-        Account:
-        <select></select>
-
-        From:
-        <select></select>
-
-        To:
-        <select></select>
+        <input type="radio" name="transaction" id="transferInput" value="transfer"/>
+        <div id="divAcc">
+          Account:
+          <select></select>
+        </div>
+        <div id="divFrom">
+          From:
+          <select></select>
+        </div>
+        <div <div id="divTo">
+          To:
+          <select></select>
+        </div>
         Category:
         <select></select>
         <input type="text" />
