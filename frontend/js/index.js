@@ -13,16 +13,23 @@ $(() => {
       $("#divFrom").show()
       $("#divTo").show()
     }})
-
+    // Getting value from radio btn in transaction
     $(document).ready(function(){
         $("input[type='radio']").click(function(){
-            var radioValue = $("input[name='transaction']:checked").val();
-            if(radioValue){
-                console.log(radioValue);
-            }
+            let radioValue = $("input[name='transaction']:checked").val();
+            if(radioValue === "deposit"){
+                let deposit = radioValue;
+                console.log(deposit);
+            } else if (radioValue === "withdraw") {
+                let withdraw = radioValue;
+                console.log(withdraw);
+            } else {
+                let transfer = radioValue;
+                console.log(transfer);
+            }})
         });
+
+
     });
 
 
-
-});
