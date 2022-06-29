@@ -1,4 +1,9 @@
 $(() => {
+    // Submiting form
+    $("form").submit((event) => {
+        event.preventDefault();
+      });
+
     //Hidding and showing transaction options
     $('[name=transaction]').change((e) => {
     e.preventDefault();
@@ -13,7 +18,8 @@ $(() => {
       $("#divFrom").show()
       $("#divTo").show()
     }})
-    // Getting value from radio btn in transaction
+    
+    // Getting value from radio btn - transaction
     $(document).ready(function(){
         $("input[type='radio']").click(function(){
             let radioValue = $("input[name='transaction']:checked").val();
@@ -28,6 +34,7 @@ $(() => {
                 console.log(transfer);
             }})
         });
+
 
 
     });
