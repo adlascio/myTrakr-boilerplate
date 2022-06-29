@@ -14,6 +14,14 @@ $(() => {
       $("#divTo").show()
     }})
 
+    $(document).ready(function(){
+        $("input[type='radio']").click(function(){
+            var radioValue = $("input[name='transaction']:checked").val();
+            if(radioValue){
+                console.log(radioValue);
+            }
+        });
+    });
 
 
 
