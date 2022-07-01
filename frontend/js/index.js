@@ -2,7 +2,7 @@ $(() => {
     // Submiting form
     $("form").submit((event) => {
         event.preventDefault();
-      });
+        });
 
     //Hidding and showing transaction options
     $('[name=transaction]').change((e) => {
@@ -10,13 +10,13 @@ $(() => {
     let selected = $('input[name="transaction"]:checked').val();
     transValue = selected;
     if (transValue === "withdraw" || transValue === "deposit" ) {
-      $("#divAcc").show()
-      $("#divFrom").hide()
-      $("#divTo").hide()
+        $("#divAcc").show()
+        $("#divFrom").hide()
+        $("#divTo").hide()
     } else if (transValue === "transfer") {
-      $("#divAcc").hide()
-      $("#divFrom").show()
-      $("#divTo").show()
+        $("#divAcc").hide()
+        $("#divFrom").show()
+        $("#divTo").show()
     }})
     
     // Getting value from radio btn - transaction
@@ -32,11 +32,42 @@ $(() => {
             } else {
                 let transfer = radioValue;
                 console.log(transfer);
-            }})
+            };
         });
-
-
-
     });
+    // Adding transaction 
+    $('#addTransaction').on('click', (e) => {
+        console.log("test");
+        // let accountId = $('#accountId').val();
+        let transactionType = $('input[name="transaction"]:checked').val();
+        let description = $('#transactionDesription').val();
+        let amount = $('#transactionAmount').val();
+
+        transactionDataJSON = JSON.stringify({
+            newTransaction: {
+                accountId: '',
+                transactionType: transactionType,
+                accountIdFrom: '',
+                accountIdTo: '',
+                category: '',
+                description: description,
+                amount: amount,
+            },
+        });
+        $.ajax({
+            method: 'post',
+            data: transactionDataJSON,
+            url: 'http://localhost:3000/transaction',
+            dataType: 'json',
+            contentType: 'application/json',
+        }).done((data) => {
+            console.log(transactionDataJSON);
+        });
+    });
+
+
+
+    
+});
 
 
