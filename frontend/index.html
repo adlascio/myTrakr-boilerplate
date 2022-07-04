@@ -21,18 +21,18 @@
   <body>
     myTrakr
     <main>
-      <form action="">
+      <form id="formNewAccount" action="">
         New Account:
-        <input type="text" />
-        <button>Add new account</button>
+        <input id="inputNewAccount" type="text" />
+        <button id="buttonNewAccount">Add new account</button>
       </form>
       <form action="">
         New Transaction: Deposit
-        <input type="radio" />
+        <input type="radio" name="transaction" value="deposit"/>
         Withdraw
-        <input type="radio" />
+        <input type="radio" name="transaction" value="withdraw"/>
         Transfer
-        <input type="radio" />
+        <input type="radio" name="transaction" value="transfer"/>
         Account:
         <select></select>
 
