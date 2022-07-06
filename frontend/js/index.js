@@ -76,8 +76,9 @@ $(() => {
             return;
         } else if($("#transactionAmount").val() === '') {
             alert("Please enter an amount!");
-            return; }
-    
+            return; 
+        }
+        
       });
 
 
