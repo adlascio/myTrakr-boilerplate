@@ -50,19 +50,17 @@ $(() => {
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
-              newCategory: {
+                newCategory: {
                 category: categoryInputValue,
-              },
+                },
             }),
-          }).done((data) => {
+        }).done((data) => {
             const newCategoryOption = new Option(categoryInputValue);
             $("#firstOption").remove();
             categorySelect.prepend(newCategoryOption);
             categoryInput.hide();
             categoryButton.hide();
             categoryInput.val("");
-          });
-
-      });
-    
+        });
+    });
 });
