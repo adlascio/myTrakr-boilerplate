@@ -22,17 +22,18 @@ class Deposit extends Transaction {
   }
 }
 
-$(() => {
-  $("#transactionForm").submit((event) => {
-    event.preventDefault();
-    if($("#transactionDesription").val() === '' & $("#transactionAmount").val() === '') {
-        alert("Please enter a description and amount!");
-        return;
-    } else if( $("#transactionDesription").val() === '') {
-        alert("Please enter an description!");
-        return;
-    } else if($("#transactionAmount").val() === '') {
-        alert("Please enter an amount!");
-        return; }
-    });
-});
+// Validation input - used in index.js for now
+// $(() => {
+//   $("#transactionForm").submit((e) => {
+//     e.preventDefault();
+//     if($("#transactionDesription").val() === '' & $("#transactionAmount").val() === '') {
+//         alert("Please enter a description and amount!");
+//         return;
+//     } else if( $("#transactionDesription").val() === '') {
+//         alert("Please enter an description!");
+//         return;
+//     } else if($("#transactionAmount").val() === '') {
+//         alert("Please enter an amount!");
+//         return; }
+//     });
+// });
