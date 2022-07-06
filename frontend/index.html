@@ -53,11 +53,14 @@
             </div>
             <div class="container4">
               Category:
-              <select></select>
+              <select name="category" id="categorySelect">
+                <option value=""></option>
+                <option value="addNewCategory">Add new category</option>
+              </select>
             </div>
             <div class="container5">
-              <input type="text" />
-              <button type="button">Add new category</button>
+              <input type="text" id="categoryInput" />
+              <button type="button" id="categoryBtn">Add new category</button>
               Description:
               <input type="text" id="transactionDesription" />
               Amount:
