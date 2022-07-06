@@ -5,6 +5,7 @@ $(() => {
     categoryInput.hide();
     categoryButton.hide();
 
+    // Hidding and showing category input and btn
     categorySelect.change((e) => {
         e.preventDefault();
         if ($("#categorySelect").val() === "addNewCategory") {
@@ -14,5 +15,19 @@ $(() => {
             categoryInput.hide();
             categoryButton.hide();
         }
+    });
+
+      
+    
+    $('#categoryBtn').click((e) => {
+        e.preventDefault();
+        const categoryInputValue = categoryInput.val();
+        //Validation - empty input
+        if ($("#categoryInput").val() === "") {
+            alert("Please enter a category"); 
+            return;
+        }
+
       });
+    
 });
