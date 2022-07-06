@@ -16,9 +16,8 @@ $(() => {
             categoryButton.hide();
         }
     });
-
-      
-    
+  
+    // Event listener for category button
     $('#categoryBtn').click((e) => {
         e.preventDefault();
         const categoryInputValue = categoryInput.val();
@@ -27,6 +26,25 @@ $(() => {
             alert("Please enter a category"); 
             return;
         }
+        // Storing category in local storage
+        $.ajax({
+            url: "http://localhost:3000/categories",
+            type: "post",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({
+              newCategory: {
+                category: categoryInputValue,
+              },
+            }),
+          }).done((data) => {
+            const newCategoryOption = new Option(categoryInputValue);
+            $("#firstOption").remove();
+            categorySelect.prepend(newCategoryOption);
+            categoryInput.hide();
+            categoryButton.hide();
+            categoryInput.val("");
+          });
 
       });
     
