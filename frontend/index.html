@@ -28,44 +28,43 @@
           <button class="newAccountBtn" id="newAccountBtn">Add new account</button>
         </form>
       </div>
-      <label for="newTransaction">New Transaction: </label>
-      <div class="container2">
-        <form action="">
-          <div class="container3">
-            Deposit
-            <input type="radio" name=“transaction” id=“depositInput” value=“deposit” />
-            Withdraw
-            <input type="radio" name=“transaction” id=“withdrawInput” value=“withdraw”/>
-            Transfer
-            <input type="radio" name=“transaction” id=“transferInput” value=“transfer”/>
-          </div>
+      <form action="">
+        <label for="newTransaction">New Transaction: </label>
+        <div class="container2">
+              Deposit
+              <input type="radio" name="transaction" id="depositInput" value="deposit" />
+              Withdraw
+              <input type="radio" name="transaction" id="withdrawInput" value="withdraw"/>
+              Transfer
+              <input type="radio" name="transaction" id="transferInput" value="transfer"/>
+            </div>
 
-          <div class=“divAcc”>
-            Account:
-            <select></select>
+            <div class="divAcc">
+              Account:
+              <select></select>
+            </div>
+            <div id="divFrom">
+              From:
+              <select></select>
+            </div>
+            <div id="divTo">
+              To:
+              <select></select>
+            </div>
+            <div class="container4">
+              Category:
+              <select></select>
+            </div>
+            <div class="container5">
+              <input type="text" />
+              <button type="button">Add new category</button>
+              Description:
+              <input type="text" id="transactionDesription" />
+              Amount:
+              <input type="number" id="transactionAmount" />
+              <button id="addTransaction">Add transaction</button>
+            </form>
           </div>
-          <div id=“divFrom”>
-            From:
-            <select></select>
-          </div>
-          <div id=“divTo”>
-            To:
-            <select></select>
-          </div>
-          <div class="container4">
-            Category:
-            <select></select>
-          </div>
-          <div class="container5">
-            <input type="text" />
-            <button type="button">Add new category</button>
-            Description:
-            <input type="text" id=“transactionDesription” />
-            Amount:
-            <input type="number" id=“transactionAmount” />
-            <button id=“addTransaction”>Add transaction</button>
-          </div>
-        </form>
       </div>
       <label for="accountSummary">Account summary</label>
       <div class="container6">
