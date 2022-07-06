@@ -13,14 +13,11 @@ class Account {
 
 $(document).ready(() => {
   // Creating new Accounts
-  $('input#newAccount').keyup(function(e){
+  $('form#newAccount').submit((e)=>{
     e.preventDefault();
-    let newAccount = e.target.value;
-    $('button#newAccountBtn').on('click', (e) => {
-      e.preventDefault();
-      $("#accountSummary").empty();
-      $('#accountSummary').append('<li>'+newAccount+'</li>');
-      console.log('New Account added');
-    });
-   })
+    let newAccount = new Account($('input#newAccount').val());
+    console.log(newAccount);
+    $('ul#accountSummary').append('<li>'+'Account: '+newAccount.username+'Transactions: '+newAccount.transactions+'</li>');
+  });
+
 });
