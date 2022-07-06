@@ -16,6 +16,23 @@ $(() => {
             categoryButton.hide();
         }
     });
+
+    //Creating new categories in list
+    $(document).ready(() => {
+        $.ajax({
+            url: "http://localhost:3000/categories",
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+        }).done((data) => {
+            let categoryOption = $.map(data, (item) => {
+            return `
+                <option value=${item.name.category}>${item.name.category}</option>
+                `;
+            });
+        categorySelect.prepend(categoryOption);
+        });
+    });
   
     // Event listener for category button
     $('#categoryBtn').click((e) => {
