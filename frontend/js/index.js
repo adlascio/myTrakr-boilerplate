@@ -35,7 +35,7 @@ $(() => {
             };
         });
     });
-    
+
     // // Adding transaction 
     // $('#addTransaction').on('click', (e) => {
     //     console.log("test");
@@ -77,94 +77,6 @@ $(() => {
         } else if($("#transactionAmount").val() === '') {
             alert("Please enter an amount!");
             return; }
-
-
-        
-
-        const transactionType = $("input[name='transaction']:checked").val();
-        const transactionCategory = categorySelect.val();
-        let transactionAmount;
-        const transactionDescription = $("#description").val();
-        let transactionUserName;
-        let userAccountId;
-        let userAccountIdFrom;
-        let userAccountIdTo;
-    
-        if(transactionType === "Deposit" || transactionType === "Withdraw"){
-          userAccountId = $("#accountSelect").val();
-          transactionUserName = $("[name=accountSelect] option:selected").text();
-    
-          if(transactionType === "Deposit"){
-            transactionAmount = Number($("#amount").val());
-          }else{
-            transactionAmount = -Number($("#amount").val());
-          }
-        }
-        if(transactionType === "Transfer"){
-          userAccountId = $("#fromSelect").val();
-          transactionUserName = $("[name=fromSelect] option:selected").text();
-          userAccountIdFrom = $("[name=fromSelect] option:selected").text();
-          userAccountIdTo = $("[name=toSelect] option:selected").text();
-    
-          if(transactionUserName === userAccountIdFrom){
-            transactionAmount = -Number($("#amount").val());
-          }else{
-            transactionAmount = Number($("#amount").val());
-          }
-        }else{
-          userAccountIdFrom = null;
-          userAccountIdTo = null;
-        }
-    
-        const newTransaction = {
-          accountId: `${userAccountId}`, // account ID for Deposits or Withdraws
-          accountIdFrom: `${userAccountIdFrom}`, // sender ID if type = 'Transfer', otherwise null
-          accountIdTo: `${userAccountIdTo}`, // receiver ID if type = 'Transfer', otherwise null
-          // all info from form{{
-          userName: `${transactionUserName}`,
-          type: `${transactionType}`,
-          category: `${transactionCategory}`,
-          description: `${transactionDescription}`,
-          transactionAmount: `${transactionAmount}`,
-        };
-        console.log(newTransaction);
-
-        $.ajax({
-          url: "http://localhost:3000/transaction",
-          type: "post",
-          contentType: "application/json",
-          dataType: "json",
-          data: JSON.stringify({
-            newTransaction
-          }),
-        })
-          .done((data) => {
-            console.log(data);
-            $("#amount").val("");
-            $("#description").val("");
-            alert("New transaction added");
-    
-            const td = $.map(data, (item) => {
-              return `
-                <tr>
-                  <td>${item.id}</td>
-                  <td>${item.userName}</td>
-                  <td>${item.type}</td>
-                  <td>${item.category}</td>
-                  <td>${item.description}</td>
-                  <td>${item.transactionAmount}</td>
-                  <td>${item.accountIdFrom}</td>
-                  <td>${item.accountIdTo}</td>
-                </tr>
-                `;
-            });
-            // console.log(td);
-            $("#transactionTable").append(td);
-    
-          })
-          .fail((error) => {
-            alert(error);
-          });
     
       });
 
