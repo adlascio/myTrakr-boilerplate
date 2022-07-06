@@ -51,20 +51,19 @@ class Account {
       //   console.log('status', status);
       //   console.log('xhr', xhr);
       // });
-      //------------------------
-      // $.ajax({
-      //   method: 'get',
-      //   url: 'http://localhost:3000/acounts',
-      //   success: function(newAccount){
-      //     $.each(newAccount,function(newAccount){
-      //       $('ul#accountSummary').append('<li>'+'Account: '+newAccount.username+'Transactions: '+newAccount.transactions+'</li>');
-      //     });
-      //   },
-      //   error: function(){
-      //     alert('error loading');
-      //   }
-      // });
-      $('ul#accountSummary').append('<li>'+'Account: '+newAccount.username+'Transactions: '+newAccount.transactions+'</li>');  
+      $.ajax({
+        method: 'get',
+        url: 'http://localhost:3000/acounts',
+        success: function(newAccount){
+          $.each(newAccount,function(newAccount){
+            $('ul#accountSummary').append('<li>'+'Account: '+newAccount.username+'Transactions: '+newAccount.transactions+'</li>');
+          });
+        },
+        error: function(){
+          alert('error loading');
+        }
+      });
+      // $('ul#accountSummary').append('<li>'+'Account: '+newAccount.username+'Transactions: '+newAccount.transactions+'</li>');  
     }else{
       alert('Please enter an Account');
     }
