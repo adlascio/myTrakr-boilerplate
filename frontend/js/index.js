@@ -1,7 +1,7 @@
 $(() => {
     //Submiting form
-    $("form").submit((event) => {
-        event.preventDefault();
+    $("form").submit((e) => {
+        e.preventDefault();
         });
 
     //Hidding and showing transaction options
@@ -66,24 +66,9 @@ $(() => {
     //     });
     // });
 
-    $("#transactionForm").submit((event) => {
-        event.preventDefault();
-        if($("#transactionDesription").val() === '' & $("#transactionAmount").val() === '') {
-            alert("Please enter a description and amount!");
-            return;
-        } else if( $("#transactionDesription").val() === '') {
-            alert("Please enter an description!");
-            return;
-        } else if($("#transactionAmount").val() === '') {
-            alert("Please enter an amount!");
-            return; 
-        }
-        
-      });
-
-
-
-
 });
+
+
+
 
 
