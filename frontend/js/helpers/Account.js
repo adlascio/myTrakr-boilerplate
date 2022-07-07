@@ -12,37 +12,42 @@ class Account {
 }
 
  //-------------------------------------
- $(document).ready(() => {
-  // Creating new Accounts
+$(document).ready(() => {
+  // Event Listener for when we submit the New Account Form
   $('form#newAccount').submit((e)=>{
     e.preventDefault();
+    // Validate that input isnt empty
     if($('#inputnewAccount').val() !== ''){
-      let newAccount = new Account($('#inputnewAccount').val());
-      console.log(newAccount);
       // GET the New Accounts
       $.ajax({
         method: 'get',
         url: 'http://localhost:3000/accounts',
-        success: function(newAccount){
-          $.each(newAccount,function(newAccount){
-            console.log('Account Added');
-          });
-        },
-        error: function(){
-          alert('error loading');
-        }
+        contentType: 'application/json',
+        dataType:'json',
+      }).done(()=>{
+        console.log('Data Obtained');
       });
+      // Create the New Account
+      let newAccount = new Account($('#inputnewAccount').val());
+      console.log(newAccount);
+      console.log('Account Added');
+      // Ad New Account to Summary
+      $('ul#accountSummary').append('<li>'+'Account: '+newAccount.username+'Transactions: '+newAccount.transactions+'</li>');
       // Post the New Accounts
+      let usrname = newAccount.username;
+      let trans = newAccount.transactions;
       $.ajax({
         method: 'post',
-        data: {
-          username: 'username',
-          transactions: 'transactions',
-        },
+        data: JSON.stringify({
+          newAccount:{
+            username: `${usrname}`,
+            transactions: `${trans}`,
+          },
+        }),
         url: 'http://localhost:3000/accounts',
-        dataType: 'text',
-      }).done((data) => {
-        $('ul#accountSummary').append('<li>'+'Account: '+newAccount.username+'Transactions: '+newAccount.transactions+'</li>');  
+        contentType: 'application/json',
+        dataType: 'json',
+      }).done(() => {
       });
     }else{
       alert('Please enter an Account');
@@ -50,4 +55,3 @@ class Account {
   });
  
 });
-
