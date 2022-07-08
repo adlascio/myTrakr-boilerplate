@@ -56,7 +56,7 @@ $(() => {
             }),
         }).done((data) => {
             const newCategoryOption = new Option(categoryInputValue);
-            $("#firstOption").remove();
+            $("#optionOne").remove();
             categorySelect.prepend(newCategoryOption);
             categoryInput.hide();
             categoryButton.hide();
