@@ -13,6 +13,8 @@ class Account {
 
  //-------------------------------------
 $(document).ready(() => {
+
+  let userList = [];
   // Event Listener for when we submit the New Account Form
   $('form#newAccount').submit((e)=>{
     e.preventDefault();
@@ -33,6 +35,10 @@ $(document).ready(() => {
       console.log('Account Added');
       // Ad New Account to Summary
       $('ul#accountSummary').append('<li>'+'Account: '+newAccount.username+'Transactions: '+newAccount.transactions+'</li>');
+      // Add account in select opitions (account, from, to)
+      $('#accountSelect').append('<option value="'+newAccount.username+'">'+newAccount.username+'</option>');
+      $('#fromSelect').append('<option value="'+newAccount.username+'">'+newAccount.username+'</option>');
+      $('#toSelect').append('<option value="'+newAccount.username+'">'+newAccount.username+'</option>');
       // Post the New Accounts
       let usrname = newAccount.username;
       let trans = newAccount.transactions;
@@ -47,11 +53,14 @@ $(document).ready(() => {
         url: 'http://localhost:3000/accounts',
         contentType: 'application/json',
         dataType: 'json',
-      }).done(() => {
+      }).done((data) => {
+        
       });
     }else{
       alert('Please enter an Account');
     }
   });
+
+
  
 });
