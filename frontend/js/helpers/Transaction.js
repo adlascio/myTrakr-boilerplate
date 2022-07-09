@@ -21,3 +21,19 @@ class Deposit extends Transaction {
     return this.amount;
   }
 }
+
+// Validation empty input
+$(() => {
+  $("#transactionForm").submit((e) => {
+    e.preventDefault();
+    if($("#transactionDesription").val() === '' & $("#transactionAmount").val() === '') {
+        alert("Please enter a description and amount!");
+        return;
+    } else if( $("#transactionDesription").val() === '') {
+        alert("Please enter an description!");
+        return;
+    } else if($("#transactionAmount").val() === '') {
+        alert("Please enter an amount!");
+        return; }
+    });
+});
