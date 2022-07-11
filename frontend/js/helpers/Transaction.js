@@ -22,7 +22,7 @@ class Deposit extends Transaction {
   }
 }
 
-// Validation empty input
+// Validation of Transaction fields
 $(() => {
   $("#transactionForm").submit((e) => {
     e.preventDefault();
@@ -34,6 +34,20 @@ $(() => {
         return;
     } else if($("#transactionAmount").val() === '') {
         alert("Please enter an amount!");
-        return; }
+        return; 
+      }else if($("#transactionAmount").val() <= 0){
+        alert('Please enter an Amount Grather than 0');
+        return;
+      }else if($('#transferInput').val()){
+        //Pending to add code here ... I run out of time, I'll add it tonight
+        // Just in case you pull the code before I get home :)
+      }
     });
 });
+
+class Transfer extends Transaction{
+  constructor(accountIdFrom,accountIdTo){
+    this.accountIdFrom = accountIdFrom;
+    this.accountIdTo = accountIdTo;
+  }
+}
