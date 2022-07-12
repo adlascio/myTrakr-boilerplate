@@ -49,6 +49,7 @@ $(document).ready(() => {
   //Post the Accounts in the Transaction fields
   for(let i = 0; i < localStorage.length; i++){
     key = localStorage.key(i);
+    $('ul#accountSummary').append('<li>'+'Account: '+key+'</li>');
     $('#accountSelect').append('<option value=>'+key+'</option>');
     $('#fromSelect').append('<option value=>'+key+'</option>');
     $('#toSelect').append('<option value=>'+key+'</option>');
