@@ -47,8 +47,10 @@ $(() => {
         let fromAccount = $('#fromSelect').val();
         let toAccount = $('#toSelect').val();
 
+        console.log(account);
+
         $.ajax({
-            url: "http://localhost:3000/transactions", 
+            url: "http://localhost:3000/transaction", 
             type: "post",
             contentType: "application/json",
             dataType: "json",
@@ -58,7 +60,7 @@ $(() => {
                     description: description,
                     amount: amount,
                     category: category,
-                    accountID: account,
+                    accountId: account,
                     accountIdFrom: fromAccount,
                     accountIdTo: toAccount,
                 },
