@@ -59,24 +59,24 @@ $(() => {
                     amount: amount,
                     category: category,
                     accountID: account,
-                    fromAccountID: fromAccount,
-                    toAccountID: toAccount,
+                    accountIdFrom: fromAccount,
+                    accountIdTo: toAccount,
                 },
             }),
         }).done((data) => {
             console.log(data);
-            $("#transactionsTable").append(
-                `<tr>
-                    <td>${data[0].id}</td> 
-                    <td>${data[0].accountID}</td> 
-                    <td>${data[0].transactionType}</td> 
-                    <td>${data[0].category}</td> 
-                    <td>${data[0].description}</td>
-                    <td>${data[0].amount}</td> 
-                    <td>${data[0].fromAccountID == 0 ? `-` : data[0].fromAccountID}</td> 
-                    <td>${data[0].toAccountID == 0 ? `-` : data[0].toAccountID}</td>'
-                </tr>`
-              );
+            // $("#transactionsTable").append(
+            //     `<tr>
+            //         <td>${data[0].id}</td> 
+            //         <td>${data[0].accountID}</td> 
+            //         <td>${data[0].transactionType}</td> 
+            //         <td>${data[0].category}</td> 
+            //         <td>${data[0].description}</td>
+            //         <td>${data[0].amount}</td> 
+            //         <td>${data[0].accountIdFrom == 0 ? `-` : data[0].accountIdFrom}</td> 
+            //         <td>${data[0].accountIdTo == 0 ? `-` : data[0].accountIdTo}</td>'
+            // //     </tr>`
+            //   );
         });
 
     });
