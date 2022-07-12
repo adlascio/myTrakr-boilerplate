@@ -13,13 +13,28 @@ class Account {
 
  //-------------------------------------
 $(document).ready(() => {
+  //get accounts
+  $.ajax({
+    method:'get',
+    url:'http://localhost:3000/accounts',
+    contentType:'application/json'
+  }).done((data) => {
+    console.log('data get accounts',data)
+    let categoryOption = $.map(data, (item) => {
+      $('ul#accountSummary').append('<li>'+'Account: '+item.username+'Transactions:'+item.transactions,'</li>');
+      $('#accountSelect').append('<option value=>'+item.username+'</option>');
+      $('#fromSelect').append('<option value=>'+item.username+'</option>');
+      $('#toSelect').append('<option value=>'+item.username+'</option>');
+    });
+  });
+  
   $('form#newAccount').submit((e)=>{
     e.preventDefault();
     //Validate the input isnt empty
     if($('#inputnewAccount').val() !== ''){
       let input = $('#inputnewAccount').val();
       let id = 'username';
-      localStorage.setItem(input,id);
+      // localStorage.setItem(input,id);
       let newAccount = new Account(input);
       let usrName = newAccount.username;
       let tranS = newAccount.transactions;
@@ -39,22 +54,11 @@ $(document).ready(() => {
       contentType: 'application/json',
       dataType: 'json',
       }).done((data) => {
-        $('ul#accountSummary').append('<li>'+'Account: '+usrName+'Ttransacions: '+tranS+'</li>');
         console.log('Accounts Posted');
       });
     }else{
       alert('Please enter an Account');
     }
   });
-  //Post the Accounts in the Transaction fields
-  for(let i = 0; i < localStorage.length; i++){
-    key = localStorage.key(i);
-    let transactions = [];
-    $('ul#accountSummary').append('<li>'+'Account: '+key+'Transactions:'+transactions,'</li>');
-    $('#accountSelect').append('<option value=>'+key+'</option>');
-    $('#fromSelect').append('<option value=>'+key+'</option>');
-    $('#toSelect').append('<option value=>'+key+'</option>');
-    console.log('Accounts Posted');
-  }
 
 });
