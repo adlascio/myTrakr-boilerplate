@@ -32,7 +32,7 @@ $(document).ready(() => {
       data: JSON.stringify({
         newAccount:{
         username: `${usrName}`,
-        ransactions: `${tranS}`,
+        transactions: [],
         },
       }),
       url: 'http://localhost:3000/accounts',
@@ -50,9 +50,9 @@ $(document).ready(() => {
   for(let i = 0; i < localStorage.length; i++){
     key = localStorage.key(i);
     $('ul#accountSummary').append('<li>'+'Account: '+key+'</li>');
-    $('#accountSelect').append('<option value=>"'+key+'</option>');
-    $('#fromSelect').append('<option value=>"'+key+'</option>');
-    $('#toSelect').append('<option value=>"'+key+'</option>');
+    $('#accountSelect').append('<option value=>'+key+'</option>');
+    $('#fromSelect').append('<option value=>'+key+'</option>');
+    $('#toSelect').append('<option value=>'+key+'</option>');
     console.log('Accounts Posted');
   }
 
