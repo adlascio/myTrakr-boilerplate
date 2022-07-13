@@ -14,17 +14,18 @@ class Account {
  //-------------------------------------
 $(document).ready(() => {
   //get accounts
+  const accountSelect = $('#accountSelect');
   $.ajax({
     method:'get',
     url:'http://localhost:3000/accounts',
     contentType:'application/json'
   }).done((data) => {
     console.log('data get accounts',data)
-    let categoryOption = $.map(data, (item) => {
+    let accountOptions = $.map(data, (item) => {
       $('ul#accountSummary').append('<li>'+'Account: '+item.username+'Transactions:'+item.transactions,'</li>');
-      $('#accountSelect').append('<option value=>'+item.username+'</option>');
-      $('#fromSelect').append('<option value=>'+item.username+'</option>');
-      $('#toSelect').append('<option value=>'+item.username+'</option>');
+      $('#accountSelect').append(`<option value=${item.id}>${item.username}</option>`);
+      $('#fromSelect').append(`<option value=${item.id}>${item.username}</option>`);
+      $('#toSelect').append(`<option value=${item.id}>${item.username}</option>`);
     });
   });
   
@@ -55,6 +56,7 @@ $(document).ready(() => {
       dataType: 'json',
       }).done((data) => {
         console.log('Accounts Posted');
+        accountSelect.append(`<option value=${data.id}>${data.username}</option>`);
       });
     }else{
       alert('Please enter an Account');
