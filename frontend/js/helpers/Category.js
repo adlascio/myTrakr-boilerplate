@@ -43,7 +43,7 @@ $(() => {
             alert("Please enter a category"); 
             return;
         }
-        // Storing category in local storage
+        // Storing category in server
         $.ajax({
             url: "http://localhost:3000/categories",
             type: "post",
