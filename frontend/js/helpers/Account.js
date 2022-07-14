@@ -15,6 +15,9 @@ class Account {
 $(document).ready(() => {
   //get accounts
   const accountSelect = $('#accountSelect');
+  const fromSelect = $('#fromSelect');
+  const toSelect = $('#toSelect');
+
   $.ajax({
     method:'get',
     url:'http://localhost:3000/accounts',
@@ -34,15 +37,12 @@ $(document).ready(() => {
     //Validate the input isnt empty
     if($('#inputnewAccount').val() !== ''){
       let input = $('#inputnewAccount').val();
-      let id = 'username';
-      // localStorage.setItem(input,id);
       let newAccount = new Account(input);
       let usrName = newAccount.username;
-      let tranS = newAccount.transactions;
       console.log(newAccount);
       console.log('Account Created');
 
-      //Post the Accounts on localhost
+      //Post the Accounts to server
       $.ajax({
       method: 'post',
       data: JSON.stringify({
@@ -57,6 +57,9 @@ $(document).ready(() => {
       }).done((data) => {
         console.log('Accounts Posted');
         accountSelect.append(`<option value=${data.id}>${data.username}</option>`);
+        fromSelect.append(`<option value=${data.id}>${data.username}</option>`);
+        toSelect.append(`<option value=${data.id}>${data.username}</option>`);
+        $('#inputnewAccount').val('');
       });
     }else{
       alert('Please enter an Account');
