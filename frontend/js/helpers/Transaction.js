@@ -24,12 +24,13 @@ class Deposit extends Transaction {
 
 class Transfer extends Transaction{
   constructor(accountIdFrom,accountIdTo){
+    super(Transaction);
     this.accountIdFrom = accountIdFrom;
     this.accountIdTo = accountIdTo;
   }
 }
 
-// Validation of Transaction fields
+// Validation of Transaction fields & Transfer
 $(() => {
   $("#transactionForm").submit((e) => {
     e.preventDefault();
@@ -45,9 +46,10 @@ $(() => {
       }else if($("#transactionAmount").val() <= 0){
         alert('Please enter an Amount Grather than 0');
         return;
-      }else if($('#transferInput').val()){
-        //Pending to add code here ... I run out of time, I'll add it tonight
-        // Just in case you pull the code before I get home :)
+      }else if($('#transactionAmount').val() > Account.balance){
+        alert('Insuficient Balance to Complete this Transaction, Please make a Deposit First');
+      }else if($('#fromSelect').val() === $('#toSelect').val()){
+        alert('Accounts Must be Different in order to Proceed with this Transaction');
       }
     });
     

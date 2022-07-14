@@ -41,6 +41,7 @@ $(document).ready(() => {
       let input = $('#inputnewAccount').val();
       let newAccount = new Account(input);
       let usrName = newAccount.username;
+      let balance = newAccount.balance;
       console.log(newAccount);
       console.log('Account Created');
 
@@ -50,7 +51,7 @@ $(document).ready(() => {
       data: JSON.stringify({
         newAccount:{
         username: `${usrName}`,
-        transactions: [],
+        balance: `${balance}`,
         },
       }),
       url: 'http://localhost:3000/accounts',
