@@ -22,7 +22,7 @@ $(document).ready(() => {
   }).done((data) => {
     console.log('data get accounts',data)
     let accountOptions = $.map(data, (item) => {
-      $('ul#accountSummary').append('<li>'+'Account: '+item.username+'Transactions:'+item.transactions,'</li>');
+      $('ul#accountSummary').append(`<li> Account: ${item.username} Balance: ${item.balance} </li>`);
       $('#accountSelect').append(`<option value=${item.id}>${item.username}</option>`);
       $('#fromSelect').append(`<option value=${item.id}>${item.username}</option>`);
       $('#toSelect').append(`<option value=${item.id}>${item.username}</option>`);
