@@ -17,6 +17,7 @@ $(document).ready(() => {
   const accountSelect = $('#accountSelect');
   const fromSelect = $('#fromSelect');
   const toSelect = $('#toSelect');
+  const filterSelect = $("#filterSelect");
 
   $.ajax({
     method:'get',
@@ -29,6 +30,7 @@ $(document).ready(() => {
       $('#accountSelect').append(`<option value=${item.id}>${item.username}</option>`);
       $('#fromSelect').append(`<option value=${item.id}>${item.username}</option>`);
       $('#toSelect').append(`<option value=${item.id}>${item.username}</option>`);
+      $('#filterSelect').append(`<option value=${item.id}>${item.username}</option>`);
     });
   });
   
@@ -59,11 +61,12 @@ $(document).ready(() => {
         accountSelect.append(`<option value=${data.id}>${data.username}</option>`);
         fromSelect.append(`<option value=${data.id}>${data.username}</option>`);
         toSelect.append(`<option value=${data.id}>${data.username}</option>`);
+        filterSelect.append(`<option value=${data.id}>${data.username}</option>`);
+
         $('#inputnewAccount').val('');
       });
     }else{
       alert('Please enter an Account');
     }
   });
-
 });
