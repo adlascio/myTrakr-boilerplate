@@ -38,8 +38,7 @@
               Transfer
               <input type="radio" name="transaction" id="transferInput" value="transfer"/>
             </div>
-
-            <div class="divAcc">
+            <div id="divAcc">
               Account:
               <select id="accountSelect"></select>
             </div>
@@ -73,9 +72,11 @@
       <div class="container6">
         <ul class="accountSummary" id="accountSummary"></ul>
         Filter by account:
-        <select></select>
-        <table>
-          <tr id="transactionsTable">
+        <select id="filterSelect">
+          <option value="">All accounts</option>
+        </select>
+        <table id="transactionsTable">
+          <tr>
             <th>Id</th>
             <th>Username</th>
             <th>Transaction Type</th>

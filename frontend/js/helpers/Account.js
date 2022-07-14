@@ -1,3 +1,5 @@
+
+
 class Account {
   constructor(username) {
     this.username = username;
@@ -41,7 +43,6 @@ $(document).ready(() => {
       let input = $('#inputnewAccount').val();
       let newAccount = new Account(input);
       let usrName = newAccount.username;
-      let balance = newAccount.balance;
       console.log(newAccount);
       console.log('Account Created');
 
@@ -69,5 +70,31 @@ $(document).ready(() => {
     }else{
       alert('Please enter an Account');
     }
+  });
+
+  $.ajax({
+    method: "get",
+    url: "http://localhost:3000/accounts",
+    dataType: "json",
+  }).done((accountList) => {
+    console.log("Get transactions.", accountList);
+ 
+    accountList.forEach(account => {
+      let transactions = account.transactions;
+      for (let i = 0; i < transactions.length; i++) {
+        $("#transactionsTable").append(
+          `<tr>
+              <td>${transactions[i].id}</td> 
+              <td>${account.username}</td> 
+              <td>${transactions[i].transactionType}</td> 
+              <td>${transactions[i].category}</td> 
+              <td>${transactions[i].description}</td>
+              <td>${transactions[i].amount}</td> 
+              <td>${transactions[i].accountIdFrom == 0 ? `-` : transactions[i].accountIdFrom}</td> 
+              <td>${transactions[i].accountIdTo == 0 ? `-` : transactions[i].accountIdTo}</td>
+          <tr/>`
+        );
+      }
+    });
   });
 });
