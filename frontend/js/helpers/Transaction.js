@@ -22,6 +22,13 @@ class Deposit extends Transaction {
   }
 }
 
+class Transfer extends Transaction{
+  constructor(accountIdFrom,accountIdTo){
+    this.accountIdFrom = accountIdFrom;
+    this.accountIdTo = accountIdTo;
+  }
+}
+
 // Validation of Transaction fields
 $(() => {
   $("#transactionForm").submit((e) => {
@@ -43,11 +50,49 @@ $(() => {
         // Just in case you pull the code before I get home :)
       }
     });
-});
+    
+    // Adding new transaction 
+    $('#addTransaction').click((e) => {
+      e.preventDefault();
+      let transactionType = $('input[name="transaction"]:checked').val();
+      let description = $('#transactionDesription').val();
+      let amount = $('#transactionAmount').val();
+      let category = $('#transactionCategory').val();
+      let account = $('#accountSelect').val();
+      let fromAccount = $('#fromSelect').val();
+      let toAccount = $('#toSelect').val();
 
-class Transfer extends Transaction{
-  constructor(accountIdFrom,accountIdTo){
-    this.accountIdFrom = accountIdFrom;
-    this.accountIdTo = accountIdTo;
-  }
-}
+      $.ajax({
+          url: "http://localhost:3000/transaction", 
+          type: "post",
+          contentType: "application/json",
+          dataType: "json",
+          data: JSON.stringify({
+              newTransaction: {
+                  transactionType: transactionType,
+                  description: description,
+                  amount: amount,
+                  category: category,
+                  accountId: account,
+                  accountIdFrom: fromAccount,
+                  accountIdTo: toAccount,
+              },
+          }),
+      }).done((data) => {
+          console.log(data);
+          $("#transactionsTable").append(
+              `<tr>
+                  <td>${data[0].id}</td> 
+                  <td>${data[0].accountId}</td> 
+                  <td>${data[0].transactionType}</td> 
+                  <td>${data[0].category}</td> 
+                  <td>${data[0].description}</td>
+                  <td>${data[0].amount}</td> 
+                  <td>${data[0].accountIdFrom == 0 ? `-` : data[0].accountIdFrom}</td> 
+                  <td>${data[0].accountIdTo == 0 ? `-` : data[0].accountIdTo}</td>'
+             </tr>`
+            );
+      });
+
+  });
+});
