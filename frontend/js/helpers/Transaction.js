@@ -57,7 +57,7 @@ $(() => {
       let transactionType = $('input[name="transaction"]:checked').val();
       let description = $('#transactionDesription').val();
       let amount = $('#transactionAmount').val();
-      let category = $('#transactionCategory').val();
+      let category = $('#categorySelect').val();
       let account = $('#accountSelect').val();
       let fromAccount = $('#fromSelect').val();
       let toAccount = $('#toSelect').val();
@@ -79,7 +79,7 @@ $(() => {
               },
           }),
       }).done((data) => {
-          console.log(data);
+          console.log("Transaction posted", data);
           $("#transactionsTable").append(
               `<tr>
                   <td>${data[0].id}</td> 
@@ -95,4 +95,36 @@ $(() => {
       });
 
   });
+
+  $(document).ready(() => {
+      $.ajax({
+          url: "http://localhost:3000/transactions  ",
+          type: "get",
+          contentType: "application/json",
+          dataType: "json",
+      }).done((data) => {
+
+        // data.forEach(account => {
+        //     console.log("Get transactions.", data);
+        //     let transactions = account.transactions;
+        //     for (let i = 0; i < transactions.length; i++) {
+        //       $("#transactionsTable").append(
+        //         `<tr>
+        //             <td>${transactions[i].accountId}</td> 
+        //             <td>${account.username}</td> 
+        //             <td>${transactions[i].id}</td> 
+        //             <td>${transactions[i].transaction}</td> 
+        //             <td>${transactions[i].category}</td> 
+        //             <td>${transactions[i].amount}</td> 
+        //             <td>${transactions[i].accountIdFrom == 0 ? `-` : transactions[i].accountIdFrom}</td> 
+        //             <td>${transactions[i].accountIdTo == 0 ? `-` : transactions[i].accountIdTo}</td>
+        //         <tr/>`
+        //       );
+        //     }
+        //   });
+
+
+      });
+  });
+
 });
