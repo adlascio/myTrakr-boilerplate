@@ -1,5 +1,3 @@
-
-
 class Account {
   constructor(username) {
     this.username = username;
@@ -12,6 +10,7 @@ class Account {
     }, 0);
   }
 }
+<<<<<<< HEAD
 
  //-------------------------------------
 $(document).ready(() => {
@@ -99,3 +98,5 @@ $(document).ready(() => {
     });
   });
 });
+=======
+>>>>>>> 3c1ef1047b50cc4f1db42263d0a23b0843a7030d
