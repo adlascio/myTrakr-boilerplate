@@ -11,7 +11,6 @@ $(() => {
 				accountB = [];
 				savedAccounts = [];
 				savedTransactions = [];
-
 		
 				$.ajax({
 					method:'get',
@@ -111,6 +110,10 @@ $(() => {
 									<td>${item.accountIdTo == 0 ? `-` : item.accountIdTo}</td>'
 								</tr>`
 							);
+							if(item.transactionType == 'deposit') { let addTr = new Deposit(parseInt(item.amount), savedAccounts[item.accountId-1]).commit(); }
+							if(item.transactionType == 'withdraw') { let addTr = new Withdrawal(parseInt(item.amount), savedAccounts[item.accountId-1]).commit(); }
+							if(item.transactionType == 'transfer') { let addTr = new Transfer(parseInt(item.amount), savedAccounts[item.accountId-1],item.accountId, item.accountIdFrom, item.accountIdTo).commit(); }
+							$('#bal' + item.accountId).html(savedAccounts[item.accountId-1].balance);
 						});
 					}
 				});
@@ -165,6 +168,11 @@ $(() => {
 								<td>${dataA[0].accountIdTo == 0 ? `-` : dataA[0].accountIdTo}</td>'
 							</tr>`
 						);
+
+						if(dataA[0].transactionType == 'deposit') { let addTr = new Deposit(parseInt(dataA[0].amount), savedAccounts[dataA[0].accountId-1]).commit(); }
+						if(dataA[0].transactionType == 'withdraw') { let addTr = new Withdrawal(parseInt(dataA[0].amount), savedAccounts[dataA[0].accountId-1]).commit(); }
+						if(dataA[0].transactionType == 'transfer') { let addTr = new Transfer(parseInt(dataA[0].amount), savedAccounts[dataA[0].accountId-1],dataA[0].accountId, dataA[0].accountIdFrom, dataA[0].accountIdTo).commit(); }
+						$('#bal' + dataA[0].accountId).html(savedAccounts[dataA[0].accountId-1].balance);
 					
 						//Check if transaction is transfer - this transaction contain two transactions
 						try{
@@ -188,6 +196,8 @@ $(() => {
 									<td>${dataA[1].accountIdTo == 0 ? `-` : dataA[1].accountIdTo}</td>'
 								</tr>`
 							); 
+							if(dataA[1].transactionType == 'transfer') { let addTr = new Transfer(parseInt(dataA[1].amount), savedAccounts[dataA[1].accountId-1],dataA[1].accountId, dataA[1].accountIdFrom, dataA[1].accountIdTo).commit(); }
+						$('#bal' + dataA[1].accountId).html(savedAccounts[dataA[1].accountId-1].balance);
 						}
 						catch (err) {
 							
@@ -195,7 +205,9 @@ $(() => {
 						$('#transactionAmount').val('');
 						$('#transactionDesription').val('');
 						$('#categorySelect').val('addNewCategory');
-						$('#accountSelect').val('');
+						$('#accountSelect').val($("#accountSelect option:first").val());
+						$('#fromSelect').val($("#fromSelect option:first").val());
+						$('#toSelect').val($("#toSelect option:first").val());
 					});
 				});
 			//adding new transaction 
