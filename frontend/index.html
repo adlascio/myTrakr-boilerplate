@@ -19,59 +19,94 @@
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
-    myTrakr
-    <main>
-      <form action="">
-        New Account:
-        <input type="text" />
-        <button>Add new account</button>
-      </form>
-      <form action="">
-        New Transaction: Deposit
-        <input type="radio" />
-        Withdraw
-        <input type="radio" />
-        Transfer
-        <input type="radio" />
-        Account:
-        <select></select>
+      <h1>myTrakr</h1>
+      <div class="container">
+        <main>
+          <form id="newAccount" action="">
+            New Account:
+            <input name="accountName" id="accountInput" type="text" />
+            <button  >Add new account</button>
+          </form>
+          <form id="newTransaction" action="">
+            New Transaction: 
 
-        From:
-        <select></select>
+            <label for=""> Deposit</label>
+            <input name="radioValue" value="deposit" type="radio" />
 
-        To:
-        <select></select>
-        Category:
-        <select></select>
-        <input type="text" />
-        <button type="button">Add new category</button>
+            <label for="">Withdraw</label>
+            <input name="radioValue" value="withdraw" type="radio" />
 
-        Description
-        <input type="text" />
+            <label for=""> Transfer</label>
+            <input name="radioValue" value="transfer" type="radio" /> <br>
 
-        Amount:
-        <input type="number" />
+            <div id="account">
+              <label for="">Account:</label>
 
-        <button>Add transaction</button>
-      </form>
+              <select id="accChangeId" class="accountWrapper selected">
+                  <option value="">Accounts</option>
+              </select>
 
-      Account summary
-      <ul></ul>
-      Filter by account:
-      <select></select>
-      <table>
-        <tr>
-          <th>Id</th>
-          <th>Username</th>
-          <th>Transaction Type</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Amount</th>
-          <th>From</th>
-          <th>To</th>
-        </tr>
-      </table>
-    </main>
+            </div>
+     
+            <div id="fromFild" >
+              <label for="">From:</label>
+              <select id="fromId" class="accountWrapper selected">
+                <option value="">From</option>
+              </select>
+            </div>
+  
+            <div id="toFild" >
+              <label for="">To:</label>
+              <select id="toId" class="accountWrapper selected">
+                <option value="">To</option>
+              </select><br>
+            </div>
+          
+            <label for="">Category:</label> 
+            <select id="chooseCategory">
+              <option value="" disabled selected>Choose a Category</option>
+              <option name="optionNewCat" value="addNew">New Category</option>
+            </select>
+
+            <div id="newCategory">
+              <input id="newCatInput" type="text" />
+              <button id="newCatBtn" type="button">Add new category</button>
+            </div><br>
+
+    
+            Description
+            <input id="descVal" type="text" />
+    
+            Amount:
+            <input id="amountVal" type="number" />
+    
+            <button>Add transaction</button>
+          </form>
+    
+          <p>Account summary:</p>
+          <ul id="listSummary"></ul>
+          Filter by account:
+          <select id="filterAcc" class="accountWrapper">
+            <option value="Filter" disabled selected>Select an account</option>
+            <option value="filterAll">Filter All</option>
+          </select>
+          <table class="tableData">
+            <tr>
+              <th>Id</th>
+              <th>Username</th>
+              <th>Transaction Type</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+            <tr>
+              
+            </tr>
+          </table>
+        </main>
+      </div>
     <script src="./js/helpers/Account.js"></script>
     <script src="./js/helpers/Category.js"></script>
     <script src="./js/helpers/Common.js"></script>
