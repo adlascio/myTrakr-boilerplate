@@ -1,18 +1,20 @@
-let categories = [];
-let categoryCounter = 0;
+let categories = [{ id: 1, name: "salary" }];
 
 export const getCategories = () => {
   return categories;
 };
 
 export const addCategory = (category) => {
-  categoryCounter++;
   const newCategory = {
-    id: categoryCounter,
+    id: categories.length + 1,
     name: category,
   };
   categories = [...categories, newCategory];
   return newCategory;
 };
 
-export default { getCategories, addCategory };
+export const validateCategory = (categoryId) => {
+  return categories.find((category) => category.id === categoryId);
+};
+
+export default { getCategories, addCategory, validateCategory };

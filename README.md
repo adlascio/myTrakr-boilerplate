@@ -37,11 +37,6 @@ frontend
     |        --- Category.js (Category Class + functions)
     |        --- Common.js (common functions)
     |        --- Transaction.js (Transaction Class + functions)
-    |    --- vendors
-    |        |
-    |        --- bootstrap.js (bootstrap file) - just in case
-    |        --- jquery.js (jQuery file) - mandatory
-    |        --- lodash.js (lodash file) - just in case
     |    --- index.js (event listeners, DOM manipulation)
     --- index.html (HTML stuff) - no introductions needed
 ```
@@ -50,13 +45,16 @@ frontend
 
 > This is just a recommendation!
 
-- Member 1 (Most confident in JS):
+- Member 1 (Hard):
   - New Transaction section
-  - Filter list by account
-- Member 2 (Other member):
+- Member 2 (Moderate):
   - New Account section
   - Account Summary
+- Member 3 (Easy):
   - Transactions list
+  - Filter by account, category, transaction type (bonus)
+- Bonus:
+  - Notification animation when a new transaction or account is created
 
 ## API Endpoints
 
@@ -69,15 +67,12 @@ All the requests should have the domain of `http://localhost:3000/`.
 
 ```js
 {
-  newAccount:{
-    username:"",
-    transactions:[]
-  }
+  newAccount: "";
 }
 ```
 
 - GET `/transactions`: get all the transactions from all accounts
-- POST `/transaction`: saves a new transaction
+- POST `/transactions`: saves a new transaction
   expects:
 
 ```js
@@ -85,8 +80,11 @@ All the requests should have the domain of `http://localhost:3000/`.
   newTransaction:{
     accountId:"", // account ID for Deposits or Withdraws
     accountIdFrom:"", // sender ID if type = 'Transfer', otherwise null
-    accountIdTo:"" // receiver ID if type = 'Transfer', otherwise null
-    // all info from form
+    accountIdTo:"" // receiver ID if type = 'Transfer', otherwise null,
+    type:"", // 'Deposit', 'Withdraw', 'Transfer'
+    amount:"", // amount of the transaction
+    categoryId:"", // category ID
+    description:"", // description of the transaction
   }
 }
 ```
@@ -101,8 +99,8 @@ All the requests should have the domain of `http://localhost:3000/`.
 }
 ```
 
-## Resources
+## Screenshot
 
-https://trello.com/invite/b/SNmx4VyG/33e9ca30c6f65657a55b233a753d173a/mytrakr
+This design is just a reference, it doesn't mean that your project should looks like the same.
 
-https://www.notionwizard.com/how-to-copy-a-trello-board/
+![Screenshot](./imgs/screenshot.png)
