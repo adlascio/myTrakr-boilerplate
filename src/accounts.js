@@ -1,4 +1,4 @@
-const accounts = [{ id: 1, username: "Arthur", transactions: [] }];
+const accounts = [];
 
 export const getAccounts = () => {
   return accounts;
